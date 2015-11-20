@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+               Menu Empleado
+        </ui:define>
+        <ui:define name="body">
+            <br><center><font color="blue" size="20"><h:outputText value="Menu Empleado"></h:outputText></font>
+                </center> </br>
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="NO HAY EMPLEADOS REGISTRADOS" rendered="#{empleadoController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{empleadoController.items.rowCount > 0}">
+                    <h:outputText value="#{empleadoController.pagination.pageFirstItem + 1}..#{empleadoController.pagination.pageLastItem + 1}/#{empleadoController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{empleadoController.previous}" value="#{bundle.Previous} #{empleadoController.pagination.pageSize}" rendered="#{empleadoController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{empleadoController.next}" value="#{bundle.Next} #{empleadoController.pagination.pageSize}" rendered="#{empleadoController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{empleadoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column><font size="4">
+                            <f:facet name="header">
+                                <h:outputText value="CODIGO"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigo}"/>
+                        </font></h:column>
+                        <h:column><font size="4">
+                            <f:facet name="header">
+                                <h:outputText value="NOMBRE"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombre}"/>
+                       </font></h:column>
+                        <h:column><font size="4">
+                            <f:facet name="header">
+                                <h:outputText value="NIT"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nit}"/>
+                       </font></h:column>
+                        <h:column><font size="4">
+                            <f:facet name="header">
+                                <h:outputText value="EDAD"/>
+                            </f:facet>
+                            <h:outputText value="#{item.edad}"/>
+                       </font></h:column>
+                        <h:column><font size="4">
+                            <f:facet name="header">
+                                <h:outputText value="SALARIO"/>
+                            </f:facet>
+                            <h:outputText value="#{item.salario}"/>
+                      </font></h:column>
+                        <h:column><font size="4">
+                            <f:facet name="header">
+                                <h:outputText value="TIPO DE EMPLEADO"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipo}"/>
+                      </font></h:column>
+                        <h:column><font size="4">
+                            <f:facet name="header">
+                                <h:outputText value="AGENCIA ASIGNADA"/>
+                            </f:facet>
+                            <h:outputText value="#{item.agencia}"/>
+                       </font></h:column>
+                        <h:column><font size="4">
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{empleadoController.prepareView}" value="VER"/>
+                            <h:outputText value="  "/>
+                            <h:commandLink action="#{empleadoController.prepareEdit}" value="EDITAR"/>
+                            <h:outputText value="  "/>
+                            <h:commandLink action="#{empleadoController.destroy}" value="ELIMINAR"/>
+                       </font></h:column>
+                       
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{empleadoController.prepareCreate}" value=""><input type="submit" value="NUEVO" name="CREAR NUEVO" /> </h:commandLink>
+                <br /><br></br>
+                <br />
+                <h:link outcome="/index"> <img src="salir.jpg" width="50" height="50" /><br>VOLVER</br></h:link>
+        </h:form>
+            
+        </ui:define>
+
+    </ui:composition>
+
+</html>

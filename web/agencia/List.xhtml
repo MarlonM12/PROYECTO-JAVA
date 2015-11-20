@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+               Menu Agencia
+        </ui:define>
+        <ui:define name="body">
+            <br><center><font color="blue" size="20"><h:outputText value="Menu Agencia"></h:outputText></font>
+                </center> </br>
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="NO HAY AGENCIAS INGRESADAS" rendered="#{agenciaController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{agenciaController.items.rowCount > 0}">
+                    <h:outputText value="#{agenciaController.pagination.pageFirstItem + 1}..#{agenciaController.pagination.pageLastItem + 1}/#{agenciaController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{agenciaController.previous}" value="#{bundle.Previous} #{agenciaController.pagination.pageSize}" rendered="#{agenciaController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{agenciaController.next}" value="#{bundle.Next} #{agenciaController.pagination.pageSize}" rendered="#{agenciaController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{agenciaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column><font size="4">
+                            <f:facet name="header">
+                                <h:outputText value="ID"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                            </font></h:column>
+                        <h:column><font size="4">
+                            <f:facet name="header">
+                                <h:outputText value="NOMBRE AGENCIA"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombrea}"/>
+                        </font></h:column>
+                        <h:column><font size="4">
+                            <f:facet name="header">
+                                <h:outputText value="DIRECCION"/>
+                            </f:facet>
+                            <h:outputText value="#{item.direccion}"/>
+                         </font></h:column>
+                        <h:column><font size="4">
+                            <f:facet name="header">
+                                <h:outputText value="DEPARTAMENTO"/>
+                            </f:facet>
+                            <h:outputText value="#{item.departamento}"/>
+                     </font></h:column>
+                        <h:column><font size="4">
+                            <f:facet name="header">
+                                <h:outputText value="TELEFONO"/>
+                            </f:facet>
+                            <h:outputText value="#{item.telefono}"/>
+                       </font></h:column>
+                        <h:column><font size="4">
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{agenciaController.prepareView}" value="VER"/>
+                            <h:outputText value="  "/>
+                            <h:commandLink action="#{agenciaController.prepareEdit}" value="EDITAR"/>
+                            <h:outputText value="  "/>
+                            <h:commandLink action="#{agenciaController.destroy}" value="ELIMINAR"/>
+                        </font></h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{agenciaController.prepareCreate}" value=""><input type="submit" value="NUEVO" name="CREAR NUEVO" /></h:commandLink>
+                <br /><br></br>
+                <br />
+                <h:link outcome="/index"> <img src="salir.jpg" width="50" height="50" /><br>VOLVER</br></h:link>
+            </h:form>
+         
+        </ui:define>
+
+    </ui:composition>
+
+</html>

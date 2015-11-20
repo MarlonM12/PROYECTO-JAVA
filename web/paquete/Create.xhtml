@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="CREAR PAQUETE"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+             <span class="Titulo"> <center><font color="white" size="15"> CREAR PAQUETE</font></center></span><br></br>
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="CODIGO: " for="idp" />
+                    <h:inputText id="idp" value="#{paqueteController.selected.idp}" title="#{bundle.CreatePaqueteTitle_idp}" required="true" requiredMessage="#{bundle.CreatePaqueteRequiredMessage_idp}"/>
+                    <h:outputLabel value="DESCRIPCION: " for="descripcion" />
+                    <h:inputText id="descripcion" value="#{paqueteController.selected.descripcion}" title="#{bundle.CreatePaqueteTitle_descripcion}" />
+                    <h:outputLabel value="FECHA: " for="fecha" />
+                    <h:inputText id="fecha" value="#{paqueteController.selected.fecha}" title="#{bundle.CreatePaqueteTitle_fecha}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="NOMBRE: " for="nombre" />
+                    <h:inputText id="nombre" value="#{paqueteController.selected.nombre}" title="#{bundle.CreatePaqueteTitle_nombre}" required="true" requiredMessage="#{bundle.CreatePaqueteRequiredMessage_nombre}"/>
+                    <h:outputLabel value="PRECIO" for="precio" />
+                    <h:inputText id="precio" value="#{paqueteController.selected.precio}" title="#{bundle.CreatePaqueteTitle_precio}" required="true" requiredMessage="#{bundle.CreatePaqueteRequiredMessage_precio}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{agenciaController.create}" value=""><input type="submit" value="GUARDAR" name="GUARDAR" /></h:commandLink>
+                <br /><br></br>
+                <h:commandLink action="#{agenciaController.prepareList}" value="" immediate="true"><input type="submit" value="VOLVER" name="VOLVER" /></h:commandLink>
+                <br />
+                <br />
+              
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

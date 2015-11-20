@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Editar Solicitud"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditSolicitudLabel_ids}" for="ids" />
+                    <h:inputText id="ids" value="#{solicitudController.selected.ids}" title="#{bundle.EditSolicitudTitle_ids}" required="true" requiredMessage="#{bundle.EditSolicitudRequiredMessage_ids}"/>
+                    <h:outputLabel value="#{bundle.EditSolicitudLabel_fechas}" for="fechas" />
+                    <h:inputText id="fechas" value="#{solicitudController.selected.fechas}" title="#{bundle.EditSolicitudTitle_fechas}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditSolicitudLabel_precio}" for="precio" />
+                    <h:inputText id="precio" value="#{solicitudController.selected.precio}" title="#{bundle.EditSolicitudTitle_precio}" />
+                    <h:outputLabel value="#{bundle.EditSolicitudLabel_vendedor}" for="vendedor" />
+                    <h:selectOneMenu id="vendedor" value="#{solicitudController.selected.vendedor}" title="#{bundle.EditSolicitudTitle_vendedor}" >
+                        <f:selectItems value="#{empleadoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditSolicitudLabel_paquete}" for="paquete" />
+                    <h:selectOneMenu id="paquete" value="#{solicitudController.selected.paquete}" title="#{bundle.EditSolicitudTitle_paquete}" >
+                        <f:selectItems value="#{paqueteController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{solicitudController.update}" value=""><input type="submit" value="GUARDAR" name="GUARDAR" /></h:commandLink>
+                <br />
+                <br />
+                 <h:link outcome="View" value=""><input type="submit" value="DETALLES" name="VER" /></h:link>
+                <br />
+                <h:commandLink action="#{solicitudController.prepareList}" value="" immediate="true"><input type="submit" value="VOLVER" name="VOLVER" /></h:commandLink>
+                <br />
+                <br />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

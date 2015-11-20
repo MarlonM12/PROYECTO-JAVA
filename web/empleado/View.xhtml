@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Datos Empleado"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <span class="Titulo"> <center><font color="white" size="15"> DETALLES EMPLEADO</font></center></span><br></br>
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="CODIGO: "/>
+                    <h:outputText value="#{empleadoController.selected.codigo}" title="#{bundle.ViewEmpleadoTitle_codigo}"/>
+                    <h:outputText value="NOMBRE: "/>
+                    <h:outputText value="#{empleadoController.selected.nombre}" title="#{bundle.ViewEmpleadoTitle_nombre}"/>
+                    <h:outputText value="NIT: "/>
+                    <h:outputText value="#{empleadoController.selected.nit}" title="#{bundle.ViewEmpleadoTitle_nit}"/>
+                    <h:outputText value="EDAD: "/>
+                    <h:outputText value="#{empleadoController.selected.edad}" title="#{bundle.ViewEmpleadoTitle_edad}"/>
+                    <h:outputText value="SALARIO: "/>
+                    <h:outputText value="#{empleadoController.selected.salario}" title="#{bundle.ViewEmpleadoTitle_salario}"/>
+                    <h:outputText value="TIPO DE EMPLEADO: "/>
+                    <h:outputText value="#{empleadoController.selected.tipo}" title="#{bundle.ViewEmpleadoTitle_tipo}"/>
+                    <h:outputText value="AGENGIA ASIGNADA: "/>
+                    <h:outputText value="#{empleadoController.selected.agencia}" title="#{bundle.ViewEmpleadoTitle_agencia}"/>
+                </h:panelGrid>
+                <br />
+                 <h:commandLink action="#{empleadoController.destroyAndView}" value=""><input type="submit" value="ELIMINAR" name="ELIMINAR" /></h:commandLink>
+               <h:outputText value="           "></h:outputText>
+                
+                <h:link outcome="Edit" value=""><input type="submit" value="EDITAR" name="EDITAR" /></h:link>
+                <br><br></br></br>
+                <h:commandLink action="#{empleadoController.prepareCreate}" value=""><input type="submit" value="NUEVO" name="NUEVO" /></h:commandLink>
+                
+                <h:commandLink action="#{empleadoController.prepareList}" value=""> <input type="submit" value="REGRESAR" name="REGRESAR" /></h:commandLink>
+                <br />
+                <br />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

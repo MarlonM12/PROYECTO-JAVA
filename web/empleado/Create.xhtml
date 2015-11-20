@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="CREAR NUEVO EMPLEADO"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <span class="Titulo"> <center><font color="white" size="15"> CREAR EMPLEADO</font></center></span><br></br>
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="CODIGO: " for="codigo" />
+                    <h:inputText id="codigo" value="#{empleadoController.selected.codigo}" title="#{bundle.CreateEmpleadoTitle_codigo}" required="true" requiredMessage="#{bundle.CreateEmpleadoRequiredMessage_codigo}"/>
+                    <h:outputLabel value="NOMBRE: " for="nombre" />
+                    <h:inputText id="nombre" value="#{empleadoController.selected.nombre}" title="#{bundle.CreateEmpleadoTitle_nombre}" required="true" requiredMessage="#{bundle.CreateEmpleadoRequiredMessage_nombre}"/>
+                    <h:outputLabel value="NIT: " for="nit" />
+                    <h:inputText id="nit" value="#{empleadoController.selected.nit}" title="#{bundle.CreateEmpleadoTitle_nit}" />
+                    <h:outputLabel value="EDAD: " for="edad" />
+                    <h:inputText id="edad" value="#{empleadoController.selected.edad}" title="#{bundle.CreateEmpleadoTitle_edad}" />
+                    <h:outputLabel value="SALARIO: " for="salario" />
+                    <h:inputText id="salario" value="#{empleadoController.selected.salario}" title="#{bundle.CreateEmpleadoTitle_salario}" required="true" requiredMessage="#{bundle.CreateEmpleadoRequiredMessage_salario}"/>
+                    <h:outputLabel value="TIPO DE EMPLEADO: " for="tipo" />
+                    <h:inputText id="tipo" value="#{empleadoController.selected.tipo}" title="#{bundle.CreateEmpleadoTitle_tipo}" required="true" requiredMessage="#{bundle.CreateEmpleadoRequiredMessage_tipo}"/>
+                    <h:outputLabel value="AGENCIA ASIGNADA: " for="agencia" />
+                    <h:inputText id="agencia" value="#{empleadoController.selected.agencia}" title="#{bundle.CreateEmpleadoTitle_agencia}" />
+                </h:panelGrid>
+                <br />
+               <br></br>
+                <h:commandLink action="#{agenciaController.create}" value=""><input type="submit" value="GUARDAR" name="GUARDAR" /></h:commandLink>
+                <br /><br></br>
+                <h:commandLink action="#{agenciaController.prepareList}" value="" immediate="true"><input type="submit" value="VOLVER" name="VOLVER" /></h:commandLink>
+                <br />
+                <br />
+            
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

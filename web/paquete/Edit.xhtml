@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Editar Paquete"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPaqueteLabel_idp}" for="idp" />
+                    <h:inputText id="idp" value="#{paqueteController.selected.idp}" title="#{bundle.EditPaqueteTitle_idp}" required="true" requiredMessage="#{bundle.EditPaqueteRequiredMessage_idp}"/>
+                    <h:outputLabel value="#{bundle.EditPaqueteLabel_descripcion}" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{paqueteController.selected.descripcion}" title="#{bundle.EditPaqueteTitle_descripcion}" />
+                    <h:outputLabel value="#{bundle.EditPaqueteLabel_fecha}" for="fecha" />
+                    <h:inputText id="fecha" value="#{paqueteController.selected.fecha}" title="#{bundle.EditPaqueteTitle_fecha}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditPaqueteLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{paqueteController.selected.nombre}" title="#{bundle.EditPaqueteTitle_nombre}" required="true" requiredMessage="#{bundle.EditPaqueteRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.EditPaqueteLabel_precio}" for="precio" />
+                    <h:inputText id="precio" value="#{paqueteController.selected.precio}" title="#{bundle.EditPaqueteTitle_precio}" required="true" requiredMessage="#{bundle.EditPaqueteRequiredMessage_precio}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{paqueteController.update}" value=""><input type="submit" value="GUARDAR" name="GUARDAR" /></h:commandLink>
+                <br />
+                <br />
+                <h:link outcome="View" value=""><input type="submit" value="DETALLES" name="VER" /></h:link>
+                <br />
+                <h:commandLink action="#{paqueteController.prepareList}" value="" immediate="true"><input type="submit" value="VOLVER" name="VOLVER" /></h:commandLink>
+                <br />
+                <br />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
